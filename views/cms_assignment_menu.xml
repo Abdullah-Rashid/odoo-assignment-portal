@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- root menu -->
+    <menuitem id="menu_cms_assignment" name="CMS Assignment" sequence="0" action="action_student_main"/>
+
+    <!-- submenu -->
+    <menuitem id="menu_Student" name="Student" parent="menu_cms_assignment" sequence="1"/>
+    <menuitem id="menu_sub_Student" name="Student" parent="menu_Student" action="action_student_main" sequence="21"/>
+    <menuitem id="menu_sub_Assignment" name="Assignment" parent="menu_Student" action="action_assignment_main" sequence="24"/>
+    <menuitem id="menu_sub_AssignmentEvaluation_student" name="Assignment Evaluation" parent="menu_Student" action="action_assignmentevaluation_main" sequence="25"/>
+
+<!-- submenu -->
+    <menuitem id="menu_staff" name="Staff" parent="menu_cms_assignment"  sequence="1"/>
+    <menuitem id="menu_sub_staff" name="Staff" parent="menu_staff" action="action_staff_main" sequence="21"/>
+    <menuitem id="menu_sub_assignment_staff" name="Assignment" parent="menu_staff" action="action_assignment_main" sequence="22"/>
+    <menuitem id="menu_sub_assignmentEvaluation_staff" name="Assignment Evaluation" parent="menu_staff" action="action_assignmentevaluation_main" sequence="22"/>
+
+<!-- submenu -->
+    <menuitem id="menu_RD_admin" name="Admin" parent="menu_cms_assignment"  sequence="1"/>
+    <menuitem id="menu_sub_Student" name="Student" parent="menu_RD_admin" action="action_student_main" sequence="21"/>
+    <menuitem id="menu_sub_Departments" name="Departments" parent="menu_RD_admin" action="action_cms_department" sequence="22"/>
+    <menuitem id="menu_sub_course" name="Course" parent="menu_RD_admin" action="action_cms_course" sequence="22"/>
+    <menuitem id="menu_sub_staff" name="Staff" parent="menu_RD_admin" action="action_staff_main" sequence="21"/>
+    <menuitem id="menu_sub_assignment" name="Assignments" parent="menu_RD_admin" action="action_assignment_main" sequence="21"/>
+
+</odoo>

@@ -1,0 +1,14 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_cms_admin_student,cms.student.admin,model_cms_student,group_cms_admin_id,1,1,1,1
+access_cms_admin_staff,cms.staff.admin,model_cms_staff,group_cms_admin_id,1,1,1,1
+access_cms_admin_assignment,cms.assignment.admin,model_cms_assignment,group_cms_admin_id,1,1,1,1
+access_cms_admin_department,cms.department.admin,model_cms_department,group_cms_admin_id,1,1,1,1
+access_cms_admin_course,cms.course.admin,model_cms_course,group_cms_admin_id,1,1,1,1
+access_cms_admin_assignmentEvaluation,cms.assignmentevaluation.admin,model_cms_assignmentevaluation,group_cms_admin_id,1,1,1,1
+access_cms_student,cms.student.admin,model_cms_student,group_cms_student_id,1,0,0,0
+access_cms_student_assignment,cms.assignment.admin,model_cms_assignment,group_cms_student_id,1,1,1,0
+access_cms_student_assignmentevaluation,cms.assignmentevaluation.admin,model_cms_assignmentevaluation,group_cms_student_id,1,0,0,0
+access_cms_staff,cms.staff.admin,model_cms_staff,group_cms_staff_id,1,0,0,0
+access_cms_staff_assignment,cms.assignment.admin,model_cms_assignment,group_cms_staff_id,1,0,0,0
+access_cms_staff_assignmentevaluation,cms.assignmentevaluation.admin,model_cms_assignmentevaluation,group_cms_staff_id,1,1,1,1
+access_cms_staff_student,cms.student.admin,model_cms_student,group_cms_staff_id,1,0,0,0

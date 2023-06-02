@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<!-- Form View 1 Of Student's Profiles -->
+    <record id="view_cms_student_form" model="ir.ui.view">
+        <field name="name">cms.student.form</field>
+        <field name="model">cms.student</field>
+        <field name="arch" type="xml">
+            <form string="Student Information">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Name" />
+                        </h1>
+                     </div>
+					 <!-- <field name="image" widget="image" options="{'size': (100, 100)}" class="oe_avatar" style="float:right; margin-top:-60px;"/> -->
+					<field name="image" class="oe_avatar" options='{"zoom": true, "preview_image":"image"}' style="float:right; margin-top:-60px;"/> 
+                     <div>
+                     <h2>
+                     <field name="rollno" placeholder="Roll No" />
+                     </h2>
+                     </div>
+                     <div>
+						<group colspan="2" col="2" string="Student Information">
+                            <field name="department_id"/>
+							<field name="cnic"/>
+							<field name="father_name"/>
+							<field name="cgpa"/>
+							<field name="email"/>
+							<field name="phone"/>
+							<field name="gender"/>
+							<field name="birth_date"/>
+							<field name="age"/>
+							<field name="active"/>
+						</group>				
+
+                        <notebook>
+                        	<page string="Remarks">
+								<field name="remark"/>
+							</page>
+                        </notebook>			
+					</div>
+				</sheet>
+			</form>
+		</field>
+    </record>
+
+    <!-- Tree View of Student -->
+    <record id="view_cms_student_tree" model="ir.ui.view">
+        <field name="name">student.student.tree</field>
+        <field name="model">cms.student</field>
+        <field name="arch" type="xml">
+            <tree string="Student Information">
+				<field name="name"/>
+                <field name="rollno"/>
+                <field name="department_id"/>
+				<field name="cgpa"/>
+                <field name="father_name"/>
+                <field name="cnic"/>
+				<field name="gender"/>
+				<field name="birth_date"/>
+				<field name="admission_date"/>
+				<field name="phone"/>
+				<field name="active" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+ <!-- Search View of Student -->
+    <record id="view_cms_student_search" model="ir.ui.view">
+        <field name="name">cms.student.search</field>
+        <field name="model">cms.student</field>
+        <field name="arch" type="xml">
+            <search string="Student Information">
+                <group col="10" colspan="4">
+                    <field name="name"/>
+                    <field name="rollno"/>
+                    <field name="father_name"/>
+                    <field name="department_id"/>
+					<field name="cnic"/>
+					<field name="gender"/>
+					<field name="birth_date"/>
+					<field name="admission_date"/>
+					<field name="phone"/>
+                </group>
+                <newline />
+                <group string="Group By">
+                    <filter name="admission_date" string="Admission Date" help="By Admission Date" context="{'group_by':'admission_date'}" />
+                    <filter name="gender" string="Gender" help="By Gender" context="{'group_by':'gender'}" />
+                </group>
+                <separator/>
+            </search>
+        </field>
+    </record>
+    
+    <!-- Calendar View Of Student -->
+    <record id="view_cms_student_calendar" model="ir.ui.view">
+        <field name="name">cms.student.calendar</field>
+        <field name="model">cms.student</field>
+        <field name="arch" type="xml">
+            <calendar color="name" date_start="admission_date" date_stop="birth_date" string="Admission Date">
+                <field name="name"/>
+                <field name="admission_date"/>
+                <field name="gender"/>
+            </calendar>
+        </field>
+    </record>
+
+
+
+    <record id="view_cms_assignment_form" model="ir.ui.view">
+        <field name="name">cms.assignment.form</field>
+        <field name="model">cms.assignment</field>
+        <field name="arch" type="xml">
+            <form string="Assignment Information">
+            <header>
+            <button class="oe_stat_button" name="make_draft" string="Draft" type="object"/>
+            <button class="oe_stat_button" name="make_turn_in" string="Turn In" type="object"/>
+            <field name="state" widget="statusbar" statusbar_visible="draft,turn in"/>
+            </header>
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="assignment_id" placeholder="Assignment Title" />
+                        </h1>
+
+
+                        <field name="attachment_ids"/>
+						<group colspan="2" col="2" string="Assignment Information">
+                            <field name="course_ids"/>
+                            <field name="description"/>
+                            <field name="date"/>
+						</group>				
+
+                        <notebook>
+                        	<page string="Remarks">
+								<field name="remark"/>
+							</page>
+                        </notebook>			
+					</div>
+				</sheet>
+			</form>
+		</field>
+    </record>
+
+
+<record id="view_cms_assignmentevaluation_form" model="ir.ui.view">
+    <field name="name">assignmentevaluation.assignmentevaluation.form</field>
+    <field name="model">cms.assignmentevaluation</field>
+    <field name="arch" type="xml">
+        <form>
+            <sheet>
+                <group>
+                    <field name="assignment_id"/>
+                    <field name="staff_name"/>
+                    <field name="date"/>
+                    <field name="remark"/>
+                </group>
+                <notebook>
+                    <page string="Child Evaluations">
+                        <field name="child_evaluations" mode="tree">
+                            <tree editable="bottom">
+                                <field name="marks_title"/>
+                                <field name="marks_val"/>
+                            </tree>
+                            <form>
+                                <group>
+                                    <field name="marks_title"/>
+                                    <field name="marks_val"/>
+                                </group>
+                            </form>
+                        </field>
+                    </page>
+                </notebook>
+            </sheet>
+        </form>
+    </field>
+</record>
+
+
+<record id="view_cms_assignmentevaluation_tree" model="ir.ui.view">
+    <field name="name">assignmentevaluation.assignmentevaluation.tree</field>
+    <field name="model">cms.assignmentevaluation</field>
+    <field name="arch" type="xml">
+        <tree string="Assignment Evaluation">
+            <field name="assignment_id"/>
+            <field name="staff_name"/>
+            <field name="date"/>
+            <field name="remark"/>
+            <field name="child_evaluations" widget="many2many_tags">
+                <tree editable="bottom">
+                    <field name="marks_title"/>
+                    <field name="marks_val"/>
+                </tree>
+            </field>
+        </tree>
+    </field>
+</record>
+
+        <!-- Form View 1 Of staff's Profiles -->
+    <record id="view_cms_staff_form" model="ir.ui.view">
+        <field name="name">cms.staff.form</field>
+        <field name="model">cms.staff</field>
+        <field name="arch" type="xml">
+            <form string="Staff Information">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Name" />
+                        </h1>
+                     </div>
+					<field name="image" class="oe_avatar" options='{"zoom": true, "preview_image":"image"}' style="float:right; margin-top:-60px;"/> 
+                     <div>
+                     <h2>
+                     <field name="cnic" placeholder="CNIC" />
+                     </h2>
+                     </div>
+                     <div>
+						<group colspan="2" col="2" string="staff Information">
+                            <field name="department_id"/>
+							<field name="father_name"/>
+							<field name="email"/>
+							<field name="phone"/>
+							<field name="gender"/>
+							<field name="birth_date"/>
+							<field name="age"/>
+							<field name="active"/>
+						</group>				
+
+                        <notebook>
+                        	<page string="Remarks">
+								<field name="remark"/>
+							</page>
+                        </notebook>			
+					</div>
+				</sheet>
+			</form>
+		</field>
+    </record>
+
+    <!-- Tree View of staff -->
+    <record id="view_cms_staff_tree" model="ir.ui.view">
+        <field name="name">staff.staff.tree</field>
+        <field name="model">cms.staff</field>
+        <field name="arch" type="xml">
+            <tree string="Staff Information">
+				<field name="name"/>
+                <field name="cnic"/>
+                <field name="department_id"/>
+                <field name="father_name"/>
+				<field name="gender"/>
+				<field name="birth_date"/>
+				<field name="admission_date"/>
+				<field name="phone"/>
+				<field name="active" invisible="1"/>
+            </tree>
+        </field>
+    </record>
+
+ <!-- Search View of staff -->
+    <record id="view_cms_staff_search" model="ir.ui.view">
+        <field name="name">cms.staff.search</field>
+        <field name="model">cms.staff</field>
+        <field name="arch" type="xml">
+            <search string="Staff Information">
+                <group col="10" colspan="4">
+                    <field name="name"/>
+					<field name="cnic"/>
+                    <field name="father_name"/>
+                    <field name="department_id"/>
+					<field name="gender"/>
+					<field name="birth_date"/>
+					<field name="admission_date"/>
+					<field name="phone"/>
+                </group>
+                <newline />
+                <group string="Group By">
+                    <filter name="admission_date" string="Admission Date" help="By Admission Date" context="{'group_by':'admission_date'}" />
+                    <filter name="gender" string="Gender" help="By Gender" context="{'group_by':'gender'}" />
+                </group>
+                <separator/>
+            </search>
+        </field>
+    </record>
+    
+    <!-- Calendar View Of staff -->
+    <record id="view_cms_staff_calendar" model="ir.ui.view">
+        <field name="name">cms.staff.calendar</field>
+        <field name="model">cms.staff</field>
+        <field name="arch" type="xml">
+            <calendar color="name" date_start="admission_date" date_stop="birth_date" string="Admission Date">
+                <field name="name"/>
+                <field name="admission_date"/>
+                <field name="gender"/>
+            </calendar>
+        </field>
+    </record>
+
+
+    <record id="view_cms_assignment_tree" model="ir.ui.view">
+        <field name="name">assignment.assignment.tree</field>
+        <field name="model">cms.assignment</field>
+        <field name="arch" type="xml">
+            <tree string="Assignment Information">
+                <field name="assignment_id"/>
+                <field name="description"/>
+                <field name="date"/>
+                <field name="attachment_ids"/>
+                <field name="remark"/>
+            </tree>
+        </field>
+    </record>
+
+ <!-- Search View of Assignment -->
+    <record id="view_cms_assignment_search" model="ir.ui.view">
+        <field name="name">cms.assignment.search</field>
+        <field name="model">cms.assignment</field>
+        <field name="arch" type="xml">
+            <search string="Assignment Information">
+                <group col="10" colspan="4">
+                    <field name="assignment_id"/>
+                    <field name="description"/>
+                    <field name="date"/>
+                    <field name="remark"/>
+                </group>
+                <newline />
+                <separator/>
+            </search>
+        </field>
+    </record>
+    
+<record id="view_cms_department_form" model="ir.ui.view">
+        <field name="name">cms.department.form</field>
+        <field name="model">cms.department</field>
+        <field name="arch" type="xml">
+            <form string="Department Information">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Department Name" />
+                        </h1>
+							<field name="parent_id"/>
+                     </div>
+                     
+				</sheet>
+			</form>
+		</field>
+    </record>
+    <!-- Form View 1 Of Department's Profiles -->
+    <record id="view_cms_course_form" model="ir.ui.view">
+        <field name="name">cms.course.form</field>
+        <field name="model">cms.course</field>
+        <field name="arch" type="xml">
+            <form string="Course Information">
+                <sheet>
+                    <div class="oe_title">
+                        <h1>
+                            <field name="name" placeholder="Course Name" />
+                        </h1>
+                    </div>
+                    <div>
+                    </div>     
+				</sheet>
+			</form>
+		</field>
+    </record>
+
+    <!-- Form View 1 Of Department's Profiles -->
+    <record id="view_cms_department_tree" model="ir.ui.view">
+        <field name="name">cms.department.tree</field>
+        <field name="model">cms.department</field>
+		<field name="arch" type="xml">
+			<tree string="Department" >
+				<field name="name"/>
+				<field name="parent_id"/>
+			</tree>
+		</field>
+    </record>
+
+    <record id="action_student_main" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cms.student</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No Students created yet!</p>
+        </field>
+    </record>
+
+        <record id="action_assignmentevaluation_main" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cms.assignmentevaluation</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No Assignment Evaluation done yet!</p>
+        </field>
+    </record>
+
+        <record id="action_assignment_main" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cms.assignment</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No Assignment created yet!</p>
+        </field>
+    </record>
+
+    <record id="action_cms_department" model="ir.actions.act_window">
+        <field name="name">CMS Department</field>
+        <field name="res_model">cms.department</field>
+        <field name="binding_view_types">form</field>
+        <field name="view_mode">tree,form</field>
+    </record>
+
+    <record id="action_cms_course" model="ir.actions.act_window">
+        <field name="name">CMS Course</field>
+        <field name="res_model">cms.course</field>
+        <field name="binding_view_types">form</field>
+        <field name="view_mode">tree,kanban,form</field>
+    </record>
+
+    <record id="action_staff_main" model="ir.actions.act_window">
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">cms.staff</field>
+        <field name="view_mode">tree,form</field>
+        <field name="context">{}</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">No Staff Created yet!</p>
+        </field>
+    </record>
+
+</odoo>
